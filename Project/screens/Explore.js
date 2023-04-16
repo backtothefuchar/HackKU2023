@@ -1,11 +1,14 @@
-import { View, Text } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import { View, Text, ScrollView } from 'react-native'
+import React, { useLayoutEffect, useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native'
+import MenuContainer from '../components/menucontainer';
 
 const Explore = () => {
 
   const navigation= useNavigation();
+
+  const [type, setType] = useState("restaurants")
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -52,6 +55,34 @@ const Explore = () => {
       */
         />
       </View>
+
+      {/* Begin scroll view for results */}
+      <ScrollView>
+        <View className="flex-row items-center justify-between px-8 mt-8">
+          <MenuContainer
+            key={"stays"}
+            title="Stays"
+            type={type}
+            setType={setType}
+          />
+
+          <MenuContainer
+            key={"attractions"}
+            title="Attractions"
+            type={type}
+            setType={setType}
+          />
+
+          <MenuContainer
+            key={"restaurants"}
+            title="Restaurants"
+            type={type}
+            setType={setType}
+          />  
+          
+
+        </View>
+      </ScrollView>
 
     </View>
   )
