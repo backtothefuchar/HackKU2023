@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native'
 import MenuContainer from '../components/menucontainer';
+import ItemCardContainer from '../components/ItemCardContainer';
 
 const Explore = () => {
 
@@ -82,6 +83,14 @@ const Explore = () => {
           
 
         </View>
+
+        <View>
+          <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
+            <ItemCardContainer key={"101"} imageSrc={"https://i.imgur.com/hqTbied.jpeg"} title="Something a very big" location="Doha"/>
+            <ItemCardContainer key={"102"} imageSrc={"https://i.imgur.com/HdCX3My.jpeg"} title="Sample" location="Qatar"/>
+          </View>
+        </View>
+
       </ScrollView>
 
     </View>
