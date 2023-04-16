@@ -3,6 +3,8 @@ import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+
 
 const PlaceScreen = ({route}) => {
     const navigation = useNavigation()
@@ -44,7 +46,69 @@ const PlaceScreen = ({route}) => {
 
                     </View>
 
+                    <View className="absolute flex-row inset-x-0 bottom-5 justify-between px-6">
+                        <View className="flex-row space-x-2 items-center">
+                            <Text className="text-[22px] font-bold text-gray-100">
+                                {data?.price_level}
+                            </Text>
+                        </View>
+                    </View>
+
                 </View>
+
+                <View className="mt-6">
+                    <Text className="text-[#05283D] text-[24px] font-bold">
+                        {data?.name}
+                    </Text>
+                    <View className="flex-row items-center space-x-2 mt-2">
+                        <Ionicons name="location-sharp" size={24} color="#05283D" />
+                        <Text className="text-gray-500 text-[20px] font-bold">
+                            {data?.location_string}
+                        </Text>
+                    </View>
+                </View>
+
+                <View className="mt-4 flex-row items-center justify-between">
+                    {data?.rating && (
+                        <View className=" flex-row items-center space-x-2">
+                        <View className="w-12 h-12 rounded-2xl bg-[#05283D] items-center justify-center shadow-md">
+                            <Ionicons name="md-star" size={24} color="white" />
+                        </View>
+                        <View>
+                            <Text className="text-[#515151]">{data?.rating}</Text>
+                            <Text className="text-[#515151]">Ratings</Text>
+                        </View>
+                        </View>
+                    )}
+
+                    {data?.price_level && (
+                        <View className=" flex-row items-center space-x-2">
+                        <View className="w-12 h-12 rounded-2xl bg-[#05283D] items-center justify-center shadow-md">
+                            <FontAwesome5 name="money-bill-wave" size={24} color="white" /> 
+                        </View>
+                        <View>
+                            <Text className="text-[#515151]">{data?.price_level}</Text>
+                            <Text className="text-[#515151]">Price Level</Text>
+                        </View>
+                        </View>
+                    )}
+
+                    {data?.bearing && (
+                        <View className=" flex-row items-center space-x-2">
+                        <View className="w-12 h-12 rounded-2xl bg-[#05283D] items-center justify-center shadow-md">
+                            <Entypo name="map" size={24} color="white" />
+                        </View>
+                        <View>
+                            <Text className="text-[#515151] capitalize">
+                            {data?.bearing}
+                            </Text>
+                            <Text className="text-[#515151]">Bearing</Text>
+                        </View>
+                        </View>
+                    )}
+
+                </View>
+
             </ScrollView>
 
         </View>
