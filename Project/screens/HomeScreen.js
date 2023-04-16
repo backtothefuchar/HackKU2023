@@ -23,7 +23,7 @@ const HomeScreen = () => {
       </View>
       {/* Enter Button: add this on top of background from image link: https://imgur.com/VKofRim */}
       <View style={styles.foregroundImageContainer}>
-        <TouchableOpacity onPress={() => console.log("Button pressed")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Explore")}>
           <Image
             source={{ uri: "https://imgur.com/VKofRim.png" }}
             style={styles.foregroundImage}
