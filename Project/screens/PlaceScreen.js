@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -107,6 +108,46 @@ const PlaceScreen = ({route}) => {
                         </View>
                     )}
 
+                </View>
+
+                {data?.description && (
+                <Text className="mt-4 tracking-wide text-[16px] font-semibold text-black">
+                    {data?.description}
+                </Text>
+                )}
+
+                {data?.cuisine && (
+                    <View className="flex-row gap-2 items-center justify-start flex-wrap mt-4">
+                        {data?.cuisine.map((n) => (
+                        <TouchableOpacity
+                            key={n.key}
+                            className="px-2 py-1 rounded-md bg-[#05283D]"
+                        >
+                            <Text className= "text-gray-200">{n.name}</Text>
+                        </TouchableOpacity>
+                        ))}
+                    </View>
+                )}
+
+                <View className=" space-y-2 mt-4 bg-[#05283D] rounded-2xl px-4 py-2">
+                    {data?.phone && (
+                        <View className="items-center flex-row space-x-6">
+                            <Entypo name="phone" size={24} color="#F8CC5C" />
+                            <Text className="text-md text-white">{data?.phone}</Text>
+                        </View>
+                    )}
+                    {data?.email && (
+                        <View className="items-center flex-row space-x-6">
+                            <FontAwesome name="envelope" size={24} color="#F8CC5C" />
+                            <Text className="text-md text-white">{data?.email}</Text>
+                        </View>
+                    )}
+                    {data?.address && (
+                        <View className="items-center flex-row space-x-6">
+                            <FontAwesome name="map-pin" size={24} color="#F8CC5C" />
+                            <Text className="text-md text-white">{data?.address}</Text>
+                        </View>
+                    )}
                 </View>
 
             </ScrollView>
