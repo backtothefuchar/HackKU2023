@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity, } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons';
@@ -149,6 +149,7 @@ const PlaceScreen = ({route}) => {
                         </View>
                     )}
                 </View>
+
 
             </ScrollView>
 

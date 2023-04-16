@@ -5,14 +5,19 @@ import { useNavigation } from '@react-navigation/native'
 import MenuContainer from '../components/menucontainer';
 import ItemCardContainer from '../components/ItemCardContainer';
 import { getPlacesData } from '../api';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Explore = () => {
 
   const navigation= useNavigation();
 
-  const [type, setType] = useState("restaurants")
+  const [type, setType] = useState("attractions")
   const [isLoading, setIsLoading] = useState(false)
   const [mainData, setMainData] = useState([])
+  const [bl_lat, setBl_lat] = useState(null)
+  const [bl_lng, setBl_lng] = useState(null)
+  const [tr_lat, setTr_lat] = useState(null)
+  const [tr_lng, setTr_lng] = useState(null)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -22,13 +27,13 @@ const Explore = () => {
   
   useEffect(() => {
     setIsLoading(true)
-    getPlacesData(). then(data =>{
+    getPlacesData(bl_lat, bl_lng, tr_lat, tr_lng, type). then(data =>{
       setMainData(data)
       setInterval(() => {
         setIsLoading(false);
       }, 2000);
     })
-  }, [])
+  }, [bl_lat, bl_lng, tr_lat, tr_lng, type])
 
 
   return (
@@ -38,6 +43,9 @@ const Explore = () => {
         <View>
           <Text className="text-[30px] text-[#05283D]">Aloha.</Text>
           <Text className="text-[30px] text-[#05283D] font-semibold">Where to today?</Text>
+        </View>
+        <View>
+          <MaterialCommunityIcons name="fireplace" size={80} color="#05283D" />
         </View>
       </View>
 
@@ -50,6 +58,10 @@ const Explore = () => {
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
           console.log(details?.geometry?.viewport);
+          setBl_lat(details?.geometry?.viewport?.southwest?.lat);
+          setBl_lng(details?.geometry?.viewport?.southwest?.lng);
+          setTr_lat(details?.geometry?.viewport?.northeast?.lat);
+          setTr_lng(details?.geometry?.viewport?.northeast?.lng);
         }}
         query={{
           key: 'AIzaSyBmUQkuneidS-KYodM646hull-wh5TwFfU',
@@ -78,7 +90,7 @@ const Explore = () => {
       <ScrollView>
         <View className="flex-row items-center justify-between px-8 mt-8">
           <MenuContainer
-            key={"stays"}
+            key={"hotels"}
             title="Stays"
             type={type}
             setType={setType}
