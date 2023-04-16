@@ -11,7 +11,7 @@ const Explore = () => {
 
   const navigation= useNavigation();
 
-  const [type, setType] = useState("attractions")
+  const [type, setType] = useState("restaurants")
   const [isLoading, setIsLoading] = useState(false)
   const [mainData, setMainData] = useState([])
   const [bl_lat, setBl_lat] = useState(null)

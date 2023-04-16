@@ -25,8 +25,8 @@ const PlaceScreen = ({route}) => {
                     <Image
                         source={
                             {uri: 
-                                data?.photo?.images?.large?.url ?
-                                data?.photo?.images?.large?.url :
+                                data?.photo?.images?.medium?.url ?
+                                data?.photo?.images?.medium?.url :
                                 "https://www.pamperedchef.com/iceberg/com/product/1575-lg.jpg"
                             }
                         }
