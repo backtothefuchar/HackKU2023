@@ -1,10 +1,12 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 
+// A React Native component that renders a menu item
 const MenuContainer = ({ title, type, setType }) => {
 
+    // Handle press event for the menu item
     const handlePress = () => {
-        setType(title.toLowerCase())
+        setType(title.toLowerCase()) // Set the type of the item to the lowercase version of the title
     }
 
     return (
