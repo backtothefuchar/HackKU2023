@@ -1,10 +1,15 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const ItemCardContainer = ({imageSrc, title, location, data}) => {
+
+    const navigation = useNavigation()
+
   return (
     <TouchableOpacity 
+        onPress={() => navigation.navigate("PlaceScreen", {param : data})}
         className="rounded-md  space-y-2 px-3 py-2 bg-[#05283D] w-[175px] my-2"
         style={{ shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 20, shadowRadius: 3.84, elevation: 5 }}
     >
