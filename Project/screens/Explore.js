@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, ActivityIndicator, Image } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native'
@@ -10,6 +10,8 @@ const Explore = () => {
   const navigation= useNavigation();
 
   const [type, setType] = useState("restaurants")
+  const [isLoading, setIsLoading] = useState(false)
+  const [mainData, setMainData] = useState([])
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -58,6 +60,9 @@ const Explore = () => {
       </View>
 
       {/* Begin scroll view for results */}
+      {isLoading ? <View className="flex-1 items-center justify-center">
+        <ActivityIndicator size="large" color="#05283D" />
+      </View> :
       <ScrollView>
         <View className="flex-row items-center justify-between px-8 mt-8">
           <MenuContainer
@@ -86,12 +91,20 @@ const Explore = () => {
 
         <View>
           <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
-            <ItemCardContainer key={"101"} imageSrc={"https://i.imgur.com/hqTbied.jpeg"} title="Something a very big" location="Doha"/>
-            <ItemCardContainer key={"102"} imageSrc={"https://i.imgur.com/HdCX3My.jpeg"} title="Sample" location="Qatar"/>
-          </View>
+            {mainData?.length > 0 ? <>
+              <ItemCardContainer key={"101"} imageSrc={"https://i.imgur.com/hqTbied.jpeg"} title="Something a very big" location="Doha"/>
+              <ItemCardContainer key={"102"} imageSrc={"https://i.imgur.com/HdCX3My.jpeg"} title="Sample" location="Qatar"/>
+            </> :  <>
+              <View className="w-full h-[600px] items-center space-y-6 mt-[-80px] justify-center">
+                <Text className="text-[30px]">(ㅠ﹏ㅠ)</Text>
+                <Text className="text-[20px]">Oops... No Data Found</Text>
+              </View>
+            </>}
+            </View>
         </View>
 
       </ScrollView>
+      }
 
     </View>
   )
